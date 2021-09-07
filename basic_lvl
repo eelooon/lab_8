@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cmath>
+#include <time.h>
+using namespace std;
+
+
+struct stek
+{
+    double number;
+    stek* next;
+};
+
+
+int main()
+{
+    setlocale(0, "ru");
+    // srand(time(0));
+    int count = 0, numbers;
+    stek* top = NULL, * p, * p2;
+    cout << "Введите количество цифр: ";
+    cin >> numbers;
+    do
+    {
+        p = new stek;
+        p->next = top;
+        p->number = ((rand() % 20001) / 100 - 100) * 0.1;
+        top = p;
+        if (p->number < 0)
+        {
+            p = new stek;
+            p->next = top;
+            p->number = 10;
+            top = p;
+        }
+        count++;
+
+    } while (count < numbers);
+    count = 0;
+    cout << "Изменённый список: ";
+    do
+    {
+        cout << top->number << "  ";
+        top = top->next;
+        count++;
+
+    } while (top != NULL);
+}
