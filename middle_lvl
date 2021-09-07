@@ -1,0 +1,45 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cmath>
+#include <time.h>
+using namespace std;
+
+
+struct stek
+{
+    double number;
+    stek* next;
+};
+
+
+int main()
+{
+    setlocale(0, "ru");
+    // srand(time(0));
+    int count = 0, numbers , sum = 0;
+    stek* top = NULL, * p, * p2;
+    cout << "Введите количество цифр: ";
+    cin >> numbers;
+    do
+    {
+        p = new stek;
+        p->next = top;
+        p->number = rand()%20;
+        if (p->number == 15 || p->number > 15)
+            sum = sum + p->number;
+        top = p;
+        count++;
+
+    } while (count < numbers);
+    count = 0;
+    cout << "Список: ";
+    do
+    {
+        cout << top->number << "  ";
+        top = top->next;
+        count++;
+
+    } while (top != NULL);
+    cout << endl << "Сумма чисел больше или = 15: "<<sum;
+}
